@@ -6,4 +6,4 @@
         Pokemon: {! v.pokemonName }
     </p>
 </div>
-</aura:component>	
+</aura:component>
