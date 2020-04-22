@@ -1,0 +1,9 @@
+<aura:component>
+<aura:attribute name="pokemonName" type="String"/>
+  <div class="row">
+    <lightning:input name="input8" value="{! v.pokemonName }" placeholder="Enter the name of the pokemon" label="Pokemon Search" />
+    <p>
+        Pokemon: {! v.pokemonName }
+    </p>
+</div>
+</aura:component>	
