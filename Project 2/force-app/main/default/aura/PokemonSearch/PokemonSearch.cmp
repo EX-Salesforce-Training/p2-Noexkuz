@@ -1,9 +1,66 @@
-<aura:component>
+<aura:component controller= "PokemonSearchController" implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes"  access="global">
 <aura:attribute name="pokemonName" type="String"/>
-  <div class="row">
-    <lightning:input name="input8" value="{! v.pokemonName }" placeholder="Enter the name of the pokemon" label="Pokemon Search" />
-    <p>
-        Pokemon: {! v.pokemonName }
-    </p>
-</div>
+<aura:attribute name="name" type="String"/>
+<aura:attribute name="weight" type="Integer"/>
+<aura:attribute name="height" type="Integer"/>
+<aura:attribute name="base_experience" type="Integer"/>
+<aura:attribute name="pokemonId" type="Integer"/>
+<aura:attribute name="abilities" type="String[]"/>
+<aura:attribute name="imgurl" type="String"/>
+<aura:attribute name="pokemon" type="Pokemon__c"/>
+  <aura:if isTrue="{!v.name}">
+    <div class="slds-align_absolute-center slds-p-vertical_medium " style="width:360px">
+    <lightning:card >
+      <div class="slds-grid slds-wrap">
+        <div class="slds-size_2-of-2">
+          <div class="slds-align_absolute-center slds-m-around_x-small">
+            <div class="img">
+              <img src="{!v.imgurl}"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-size_2-of-2 ">
+          <div class="slds-border_top slds-text-align_center slds-p-left_xx-large slds-p-top_small slds-p-bottom_small">
+            <dl class="slds-dl_horizontal">
+              <dt class="slds-dl_horizontal__label">Pokemon:</dt>
+              <dd class="slds-dl_horizontal__detail">{! v.name }</dd>
+              <dt class="slds-dl_horizontal__label">Weight:</dt>
+              <dd class="slds-dl_horizontal__detail">{! v.weight }</dd>
+              <dt class="slds-dl_horizontal__label">Height:</dt>
+              <dd class="slds-dl_horizontal__detail">{! v.height }</dd>
+              <dt class="slds-dl_horizontal__label">Experience:</dt>
+              <dd class="slds-dl_horizontal__detail">{! v.base_experience }</dd>
+              <dt class="slds-dl_horizontal__label">Pokemon Id:</dt>
+              <dd class="slds-dl_horizontal__detail">{! v.pokemonId }</dd>
+              <dt class="slds-dl_horizontal__label">Abilities:</dt>
+              <dd class="slds-dl_horizontal__detail"><aura:iteration items="{!v.abilities}" var="ability">{!ability}</aura:iteration></dd>
+              
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-align_absolute-center">
+        <lightning:button iconName="utility:download" iconPosition="left" label="Save" title="Save" onclick="{! c.handleSave }" />
+        </div>
+    </lightning:card>
+    </div>
+  </aura:if>
+    
+  <lightning:card>
+    <lightning:layout horizontalAlign="center" verticalAlign="center">
+      <lightning:layoutItem size="3" padding="around-small" class="slds-m-bottom_medium">
+        <lightning:input name="input" value="{! v.pokemonName }" placeholder="Enter pokemon" label="Pokemon Search" />
+      </lightning:layoutItem>
+      <lightning:layoutItem >
+        <div class="slds-p-top_x-small slds-p-right_small">
+        <lightning:button label="Search" title="Search Pokemon" onclick="{! c.handleClick }" />
+        </div>
+        </lightning:layoutItem> 
+    </lightning:layout>
+  </lightning:card>
+
+
+
 </aura:component>
