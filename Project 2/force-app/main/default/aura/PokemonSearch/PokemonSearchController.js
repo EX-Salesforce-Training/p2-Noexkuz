@@ -36,6 +36,7 @@
       var state = response.getState();
       if (state === "SUCCESS") {
         pokemon = response.getReturnValue();
+        helper.showToast();
       } else {
         console.log(state);
       }

@@ -48,8 +48,11 @@ public with sharing class PokemonSearchController {
     pokemon.Base_Experience__c = base_experience;
     pokemon.Pokemon_Id__c = pokemonId;
     pokemon.Ability1__c = String.valueOf(abilities[0]);
-    pokemon.Ability2__c = String.valueOf(abilities[1]); 
-   
+      if(abilities.size() == 1){
+        pokemon.Ability2__c = 'None'; 
+      } else {
+        pokemon.Ability2__c = String.valueOf(abilities[1]);
+      }
     insert pokemon;
     return pokemon;
   }
