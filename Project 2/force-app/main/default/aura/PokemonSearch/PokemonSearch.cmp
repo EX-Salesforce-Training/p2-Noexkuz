@@ -1,4 +1,4 @@
-<aura:component controller= "PokemonSearchController" implements="flexipage:availableForAllPageTypes, forceCommunity:availableForAllPageTypes"  access="global">
+<aura:component controller= "PokemonSearchController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"  access="global">
 <aura:attribute name="pokemonName" type="String"/>
 <aura:attribute name="name" type="String"/>
 <aura:attribute name="weight" type="Integer"/>
@@ -8,10 +8,18 @@
 <aura:attribute name="abilities" type="String[]"/>
 <aura:attribute name="imgurl" type="String"/>
 <aura:attribute name="pokemon" type="Pokemon__c"/>
+<aura:attribute name="saving" type="Boolean" default="true"/>
   <aura:if isTrue="{!v.name}">
-    <div class="slds-align_absolute-center slds-p-vertical_medium " style="width:360px">
+
+    <div class="slds-align_absolute-center slds-p-vertical_medium " style="width:400px">
+      
+      <div class="slds-align_absolute-center">
+        <lightning:button iconName="utility:chevronleft" onclick="{! c.handleLeftClick }" />
+      </div>
+
     <lightning:card >
       <div class="slds-grid slds-wrap">
+        <aura:if isTrue="{!v.saving}">
         <div class="slds-size_2-of-2">
           <div class="slds-align_absolute-center slds-m-around_x-small">
             <div class="img">
@@ -19,6 +27,16 @@
             </div>
           </div>
         </div>
+        <aura:set attribute="else">
+          <div class="slds-size_2-of-2">
+            <div class="slds-align_absolute-center slds-m-around_x-small">
+              <div >
+                <img src="{!$Resource.pokeballcatch}"/>
+              </div>
+            </div>
+          </div>
+        </aura:set>
+        </aura:if>
 
         <div class="slds-size_2-of-2 ">
           <div class="slds-border_top slds-text-align_center slds-p-left_xx-large slds-p-top_small slds-p-bottom_small">
@@ -34,7 +52,9 @@
               <dt class="slds-dl_horizontal__label">Pokemon Id:</dt>
               <dd class="slds-dl_horizontal__detail">{! v.pokemonId }</dd>
               <dt class="slds-dl_horizontal__label">Abilities:</dt>
-              <dd class="slds-dl_horizontal__detail"><aura:iteration items="{!v.abilities}" var="ability">{!ability}</aura:iteration></dd>
+              <dd class="slds-dl_horizontal__detail"><aura:iteration items="{!v.abilities}" var="ability">
+                <dd class="slds-dl_horizontal__detail">{!ability}</dd>
+            </aura:iteration></dd>
               
             </dl>
           </div>
@@ -42,12 +62,19 @@
       </div>
 
       <div class="slds-align_absolute-center">
-        <lightning:button iconName="utility:download" iconPosition="left" label="Save" title="Save" onclick="{! c.handleSave }" />
+        <lightning:button iconName="utility:download" iconPosition="left" label="Save" variant="brand-outline" title="Save" onclick="{! c.handleSave }" />
         </div>
     </lightning:card>
+
+      <div class="slds-align_absolute-center">
+        <lightning:button iconName="utility:chevronright" onclick="{! c.handleRightClick }" />
+      </div>
+
     </div>
   </aura:if>
-    
+
+ 
+
   <lightning:card>
     <lightning:layout horizontalAlign="center" verticalAlign="center">
       <lightning:layoutItem size="3" padding="around-small" class="slds-m-bottom_medium">
@@ -55,7 +82,7 @@
       </lightning:layoutItem>
       <lightning:layoutItem >
         <div class="slds-p-top_x-small slds-p-right_small">
-        <lightning:button label="Search" title="Search Pokemon" onclick="{! c.handleClick }" />
+        <lightning:button label="Search" variant="brand" title="Search Pokemon" onclick="{! c.handleClick }" />
         </div>
         </lightning:layoutItem> 
     </lightning:layout>
