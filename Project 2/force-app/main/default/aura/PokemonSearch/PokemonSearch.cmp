@@ -11,7 +11,7 @@
 <aura:attribute name="saving" type="Boolean" default="true"/>
   <aura:if isTrue="{!v.name}">
 
-    <div class="slds-align_absolute-center slds-p-vertical_medium " style="width:400px">
+    <div class="slds-align_absolute-center slds-p-vertical_medium " style="width:450px">
       
       <div class="slds-align_absolute-center">
         <lightning:button iconName="utility:chevronleft" onclick="{! c.handleLeftClick }" />
@@ -53,7 +53,7 @@
               <dd class="slds-dl_horizontal__detail">{! v.pokemonId }</dd>
               <dt class="slds-dl_horizontal__label">Abilities:</dt>
               <dd class="slds-dl_horizontal__detail"><aura:iteration items="{!v.abilities}" var="ability">
-                <dd class="slds-dl_horizontal__detail">{!ability}</dd>
+                <dd >{!ability}</dd>
             </aura:iteration></dd>
               
             </dl>

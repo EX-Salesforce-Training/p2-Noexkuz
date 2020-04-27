@@ -47,11 +47,18 @@ public with sharing class PokemonSearchController {
     pokemon.Height__c = height;
     pokemon.Base_Experience__c = base_experience;
     pokemon.Pokemon_Id__c = pokemonId;
-    pokemon.Ability1__c = String.valueOf(abilities[0]);
       if(abilities.size() == 1){
-        pokemon.Ability2__c = 'None'; 
-      } else {
+        pokemon.Ability1__c = String.valueOf(abilities[0]);
+        pokemon.Ability2__c = 'None';
+        pokemon.Ability3__c = 'None'; 
+      } else if(abilities.size() == 2){
+        pokemon.Ability1__c = String.valueOf(abilities[0]);
         pokemon.Ability2__c = String.valueOf(abilities[1]);
+        pokemon.Ability3__c = 'None';
+      } else if(abilities.size() == 3){
+        pokemon.Ability1__c = String.valueOf(abilities[0]);
+        pokemon.Ability2__c = String.valueOf(abilities[1]);
+        pokemon.Ability3__c = String.valueOf(abilities[2]);
       }
     insert pokemon;
     return pokemon;
